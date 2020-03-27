@@ -1,8 +1,12 @@
 import React from 'react'
 import Card from '../components/card'
+import { withRouter } from 'react-router-dom'
 
 class Home extends React.Component {
 
+    prepararCadastro = () => {
+        this.props.history.push('/cadastro-autor')
+    }
     render(){
         return (            
                 <div className="row">
@@ -17,7 +21,7 @@ class Home extends React.Component {
                                                     <p> Bem vindo a Livraria SimpleBooks </p>
                                                     <p>Deseja adicionar o primeiro autor?</p>
                                                     <br />
-                                                    <button className="btn btn-success">Adicionar</button>
+                                                    <button onClick={ this.prepararCadastro } className="btn btn-success">Adicionar</button>
                                                 </fieldset>
                                             </div>
                                         </div>
@@ -32,4 +36,4 @@ class Home extends React.Component {
     }
 }
 
-export default Home
+export default withRouter(Home)
