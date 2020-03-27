@@ -3,6 +3,8 @@ import React from 'react'
 import { withRouter } from 'react-router-dom'
 import Card from '../components/card'
 import FormGroup from '../components/form-group'
+
+import axios from 'axios'
 class CadastroAutor extends React.Component {
 
     state = {
@@ -12,7 +14,15 @@ class CadastroAutor extends React.Component {
     }
 
     cadastrar = () => {
-        console.log(this.state)
+        axios.post('http://localhost:8000/api/autores', {
+            nome: this.state.nome,
+            dataDeNascimento: this.state.dataDeNascimento,
+            biografia: this.state.biografia
+        }).then( Response => {
+            console.log(Response)
+        }).catch( erro => {
+            console.log(erro.Response)
+        })
     }
 
     cancelar = () => {
