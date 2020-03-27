@@ -17,8 +17,7 @@ class CadastroAutor extends React.Component {
 
 
     render(){
-        return (
-        <div className="container">
+        return (        
             <Card title ="Cadastro de Autor"> 
                <div className="row">
                    <div className="col-lg-12">
@@ -49,8 +48,7 @@ class CadastroAutor extends React.Component {
                         </div>
                    </div>
                 </div>            
-            </Card>
-        </div>
+            </Card>        
         )
     }
 }
