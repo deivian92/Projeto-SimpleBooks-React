@@ -6,7 +6,7 @@ function Navbar() {
     return (
         <div className="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
       <div className="container">
-        <a href="https://bootswatch.com/" className="navbar-brand">SimpleBooks</a>
+        <a href="#/" className="navbar-brand">SimpleBooks</a>
         <button className="navbar-toggler" 
                 type="button" 
                 data-toggle="collapse" 

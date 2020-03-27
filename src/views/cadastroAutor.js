@@ -4,7 +4,8 @@ import { withRouter } from 'react-router-dom'
 import Card from '../components/card'
 import FormGroup from '../components/form-group'
 
-import axios from 'axios'
+import AutorService from '../service/autorService'
+import { mensagemSucesso, mensagemErro} from '../components/toastr'
 class CadastroAutor extends React.Component {
 
     state = {
@@ -13,16 +14,25 @@ class CadastroAutor extends React.Component {
         biografia: ''
     }
 
+    constructor(){
+        super();
+        this.service = new AutorService();
+    }
+
     cadastrar = () => {
-        axios.post('http://localhost:8000/api/autores', {
+        const autor = {
             nome: this.state.nome,
-            dataDeNascimento: this.state.dataDeNascimento,
-            biografia: this.state.biografia
-        }).then( Response => {
-            console.log(Response)
-        }).catch( erro => {
-            console.log(erro.Response)
-        })
+            dataDeNascimento: this.dataDeNascimento,
+            biografia: this.biografia
+        }
+        
+        this.service.salvar(autor)
+            .then(response => {
+                mensagemSucesso('Autor cadastrado com sucesso!')
+                this.props.history.push('/home')
+            }).catch(error => {
+                mensagemErro(error.response)
+            })
     }
 
     cancelar = () => {
