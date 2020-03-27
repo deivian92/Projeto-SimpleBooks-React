@@ -19,7 +19,31 @@ class CadastroAutor extends React.Component {
         this.service = new AutorService();
     }
 
+    validar(){
+        const msgs = []
+
+        if(!this.state.nome) {
+            msgs.push('O campo Nome é obrigatório.')
+        }
+
+        if(!this.state.dataDeNascimento) {
+            msgs.push('O campo Data de Nascimento é obrigatório.')
+        }else if(!this.state.dataDeNascimento.match(/^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/) ){
+            msgs.push('Informe uma Data de Nasimento válida.')
+        }
+
+        return msgs;
+    }
     cadastrar = () => {
+        const msgs = this.validar();
+
+        if(msgs && msgs.length > 0){
+            msgs.forEach( (msg, index ) => {
+                mensagemErro(msg)
+            } );
+            return false;
+        }
+
         const autor = {
             nome: this.state.nome,
             dataDeNascimento: this.dataDeNascimento,
